@@ -38,9 +38,6 @@ func main() {
 	defer f.Close()
 	log.SetOutput(f)
 	
-	// arg1, _ := strconv.ParseInt(os.Args[1], 10, 32)
-	// ownPort := int32(arg1) + 5000
-
 	flag.Parse()
 
 	ctx, cancel := context.WithCancel(context.Background())
@@ -58,13 +55,12 @@ func main() {
 	go p.connectToOtherPeers()
 
 	for {
-
 	}
 }
 
 func startPeerServer(p *Peer) {
 
-	grpcServer := grpc.NewServer()                                           // create a new grpc server
+	grpcServer := grpc.NewServer()                                      // create a new grpc server
 	listen, err := net.Listen("tcp", "localhost:"+strconv.Itoa(p.port)) // creates the listener
 
 	if err != nil {
